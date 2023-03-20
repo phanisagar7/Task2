@@ -97,18 +97,9 @@ export const FetchData = () => {
     return color;
   };
 
-  const getMinutesValue = (lastUpdateTime) => {
-    let lastDate = new Date(lastUpdateTime);
-    return `${lastDate.getHours()}-${
-      lastDate.getMinutes() > 10
-        ? lastDate.getMinutes()
-        : `0${lastDate.getMinutes()}`
-    }`;
-  };
-
   const setMapLabels = () => {
     let timerecords = responseData.map((i) => {
-      return getMinutesValue(i.lastUpdateTime);
+      return new Date(i.lastUpdateTime).toLocaleString("en-US");
     });
     setCompleteDataLabels([...new Set(timerecords)]);
   };
